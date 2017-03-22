@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gems</title>
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Black+Ops+One" rel="stylesheet">
+  
+  </head>
+
+  <body>
+  <container class= "mainSection">
+
+  <h1>Gem Collector!</h1> 
+
+<!-- <div class= "row">
+	<div class="col sm-8"> -->
+  		<div class= "instructions">
+  		<p>You will be given a random number at the start of the game.</p>
+  		<p>There are four Gems below. By clicking on a Gem you will add a specific amount of points to your total score.</p>
+  		<p>You win the game by matching your total score to the random number, you lose the game if your total score goes above the random number</p>
+  		<p>The value of each Gem is hidden from you until you click on it</p>
+  		<p>Each time the game starts, the game will change the values of each Gem</p><br>
+  		</div>
+  	<!-- </div>
+  	<div class ="col-sm-4"> -->
+
+  		<div id= "randomNumber"></div>
+		 <div id="scoreBox"> 
+			<p id="timesWon">Wins:</p>
+			<p id="timesLost">Losses:</p>
+		 </div>
+		 <div id= "playerScore"></div>
+	<!-- </div>
+  </div> -->
+
+  
+
+  <div id= "winsLoss"></div>
+   <div id="crystals">
+		<img class="crystalImages" id="steven" value="0" src = "http://i.cdn.turner.com/v5cache/CARTOON/site/Images/i76/steven_steven_174x252.png">
+  		<img class="crystalImages" id="garnet" value="0" src = "http://www.cartoonnetwork.ca/tv/steven-universe/images/steven-universe-character-garnet.png">
+  		<img class="crystalImages" id="amethyst" value="0" src = "http://vignette1.wikia.nocookie.net/steven-universe/images/9/9a/Amethyst_and_Whip.png/revision/latest?cb=20141220140637">
+  		<img class="crystalImages" id="pearl" value="0" src = "http://pre10.deviantart.net/9523/th/pre/i/2015/295/1/5/steven_universe___fighter_pearl_by_geodude885-d9dzpc4.png">
+  	</div>
+
+  	<footer>
+  	  &copy; Emily Adams 2017
+  	 </footer>
+
+
+
+ 
+  <!-- JAVASCRIPT  -->
+  <!-- ========================================= -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+
+  <script type="text/javascript">
+
+
+$(document).ready(function() {
+
+	var counter = 0;
+	var wins= 0;
+	var losses= 0;
+	
+	
+	var targetNumber = Math.floor(Math.random() * ((120-19)+1) + 19);
+
+
+
+	$("#randomNumber").html(targetNumber);
+
+  //create a loop for the variable of the unknown score to win between 19-120
+     // x= 19 y= 120
+
+     
+
+//make the crystals have randomly assigned numbers that will be similar variations apart, but that will add up to the score - values between 1-12
+// x = 1 y=12
+
+var crystalNumberFunc = function() {
+	return Math.floor((Math.random() * 12)+1);
+	}
+
+$("#steven").attr("value", crystalNumberFunc());
+$("#garnet").attr("value", crystalNumberFunc());
+$("#amethyst").attr("value", crystalNumberFunc());
+$("#pearl").attr("value", crystalNumberFunc());
+
+$(".crystalImages").on("click", function() {
+
+     //var crystalNumber = Math.floor(Math.random() * ((12-1)+1) +1);
+
+     
+
+	// console.log("value");
+   	// $("#playerScore").html($(this).attr("value"));
+
+   	var crystalScore =	$(this).attr("value");
+   	// console.log(crystalScore);
+
+   	 counter += parseInt(crystalScore);
+
+   	 $("#playerScore").html(counter);
+
+
+   	// winVar = document.getElementById("timesWon");
+    // winVar.innerHTML = "Win: " + win;
+
+    // lossVar = document.getElementById("timesLost");
+    // lossVar.innerHTML = "Losses: " + losses;
+
+
+   	if (counter === targetNumber){
+   		wins++;
+   		alert("You win");
+   		html();
+   		counter = 0;
+   		 
+   		
+   		
+   		
+    	
+   	}
+
+   	else if (counter >= targetNumber){
+   		losses++;
+   		alert("You lose");
+   		html();
+   		counter = 0;
+   		
+    	
+   	}
+
+   	
+
+
+        
+  
+
+   	function html(){
+  $("#timesWon").text("Wins: " + wins);
+  $("#timesLost").text("Losses: " + losses);
+  };
+  
+
+
+
+
+
+
+   	
+
+
+
+   
+
+   });
+
+
+
+
+
+
+  
+
+  //assign a random target number when a crystal is clicked at the beginning of a game
+  	
+
+
+
+  	// if ((crystalNumber === targetNumber)){
+   //        win++;
+   //  }
+
+
+  	
+
+  //assign each crystal a new variable number once a target number has been chosen
+
+
+  //make clicking a crystal add respective points to the playerScore
+
+  //if the points match the target number increase wins by 1
+
+  //if points go over the target number increase losses by 1
+
+  //make the game refresh without clearing scores once a win or loss is increased by 1
+
+
+
+}); //end of (document).ready(function()
+
+   </script>
+  </container>
+</body>
+</html>
